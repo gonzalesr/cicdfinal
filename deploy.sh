@@ -1,6 +1,3 @@
-cd /var/www/continuosIntC2/
-git pull
-dotnet restore
-dotnet ef database update --project PatientManagement.Infrastructure --startup-project PatientManagement.WebApi --context StoredDbContex
-dotnet build
-dotnet publish --configuration Release
+#!/bin/bash
+hostname=$(curl http://169.254.169.254/metadata/v1/hostname)
+docker run -d -p 80:8080 --name patient-"$hostname" gonzalesr/cicdFinal:"$hostname"
